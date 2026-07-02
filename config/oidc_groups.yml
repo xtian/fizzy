@@ -1,0 +1,23 @@
+# OIDC group → account (team) mapping.
+#
+# Fizzy isolates teams by mapping each OIDC `groups` claim value to its own
+# Account (tenant). Members of a group can only see and collaborate within the
+# account it maps to. Groups NOT listed here are ignored — a login carrying only
+# unmapped groups gains no account access ("pre-mapped only").
+#
+# Each mapped account is created automatically on first login if it does not
+# exist yet, and stamped with `oidc_group` so subsequent logins resolve to the
+# same account. Membership is reconciled on every login: groups present in the
+# claim are granted, mapped accounts absent from the claim are revoked.
+#
+# Example:
+#
+#   groups:
+#     "acme-engineering":
+#       account_name: "Acme Engineering"
+#       default_role: member
+#     "acme-admins":
+#       account_name: "Acme Engineering"
+#       default_role: admin
+#
+groups: {}

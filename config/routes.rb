@@ -166,6 +166,10 @@ Rails.application.routes.draw do
     end
   end
 
+  # OIDC (OmniAuth OpenID Connect) sign-in
+  match "/auth/oidc/callback", to: "sessions/oidc#create", via: %i[ get post ], as: :oidc_callback
+  match "/auth/failure", to: "sessions/oidc#failure", via: %i[ get post ], as: :oidc_failure
+
   get "/signup", to: redirect("/signup/new")
 
   resource :signup, only: %i[ new create ] do

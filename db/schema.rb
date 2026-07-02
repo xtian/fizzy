@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_07_09_120000) do
+ActiveRecord::Schema[8.2].define(version: 2026_07_10_000000) do
   create_table "accesses", id: :uuid, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "accessed_at"
     t.uuid "account_id", null: false
@@ -65,8 +65,10 @@ ActiveRecord::Schema[8.2].define(version: 2026_07_09_120000) do
     t.datetime "created_at", null: false
     t.bigint "external_account_id"
     t.string "name", null: false
+    t.string "oidc_group"
     t.datetime "updated_at", null: false
     t.index ["external_account_id"], name: "index_accounts_on_external_account_id", unique: true
+    t.index ["oidc_group"], name: "index_accounts_on_oidc_group", unique: true
   end
 
   create_table "action_pack_passkeys", id: :uuid, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -346,9 +348,12 @@ ActiveRecord::Schema[8.2].define(version: 2026_07_09_120000) do
   create_table "identities", id: :uuid, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "email_address", null: false
+    t.string "oidc_provider"
+    t.string "oidc_subject"
     t.boolean "staff", default: false, null: false
     t.datetime "updated_at", null: false
     t.index ["email_address"], name: "index_identities_on_email_address", unique: true
+    t.index ["oidc_provider", "oidc_subject"], name: "index_identities_on_oidc_provider_and_oidc_subject", unique: true
   end
 
   create_table "identity_access_tokens", id: :uuid, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

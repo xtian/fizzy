@@ -37,6 +37,10 @@ gem "zip_kit"
 gem "mittens"
 gem "useragent", bc: "useragent"
 
+# Authentication
+gem "omniauth_openid_connect", "~> 0.8.0"
+gem "omniauth-rails_csrf_protection", "~> 1.0"
+
 # Operations
 gem "autotuner"
 gem "mission_control-jobs"
