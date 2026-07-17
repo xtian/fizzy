@@ -35,7 +35,7 @@
 
   <% if oidc_enabled? %>
     <div class="margin-block-start">
-      <%= button_to "Sign in with SSO", "/auth/oidc", class: "btn btn--plain txt-link center txt-small" %>
+      <%= button_to "Sign in with SSO", "/auth/oidc", data: { turbo: false }, class: "btn btn--plain txt-link center txt-small" %>
     </div>
   <% end %>
 
