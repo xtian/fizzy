@@ -24,8 +24,10 @@
       <p class="margin-none-block-start">You don’t have any Fizzy accounts.</p>
     <% end %>
 
-    <%= link_to new_signup_path, class: "btn center txt-small margin-block-start", data: { turbo_prefetch: false } do %>
-      <span>Sign up for a new Fizzy account</span>
+    <% if Account.accepting_signups? %>
+      <%= link_to new_signup_path, class: "btn center txt-small margin-block-start", data: { turbo_prefetch: false } do %>
+        <span>Sign up for a new Fizzy account</span>
+      <% end %>
     <% end %>
   </section>
 <% end %>
